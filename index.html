@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research: To Infinity and Beyond | Paradox 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07080d;
+      --bg-soft: rgba(255, 255, 255, 0.05);
+      --card: rgba(10, 12, 22, 0.76);
+      --card-strong: rgba(16, 18, 32, 0.9);
+      --stroke: rgba(255, 255, 255, 0.09);
+      --text: rgba(245, 244, 248, 0.96);
+      --muted: rgba(245, 244, 248, 0.68);
+      --soft: rgba(245, 244, 248, 0.42);
+      --gold: #d8b46a;
+      --gold-soft: rgba(216, 180, 106, 0.16);
+      --rose: #ef6ca7;
+      --cyan: #72d7ff;
+      --blue: #5ba3ff;
+      --purple: #a78bfa;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(91, 163, 255, 0.15), transparent 22%),
+        radial-gradient(circle at 80% 18%, rgba(167, 139, 250, 0.12), transparent 20%),
+        radial-gradient(circle at 65% 85%, rgba(114, 215, 255, 0.1), transparent 25%),
+        linear-gradient(180deg, #05060b 0%, #090b12 40%, #06070c 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 44%, transparent 100%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .progress-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 1000;
+    }
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--cyan), var(--rose));
+      box-shadow: 0 0 18px rgba(91, 163, 255, 0.4);
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 28px));
+      margin: 0 auto;
+      padding-bottom: 28px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 30;
+      margin-top: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 8, 13, 0.7);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand-stack {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .brand-stack img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
+    }
+
+    .brand-sep {
+      width: 1px;
+      height: 18px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.28), transparent);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      transition: 180ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--cyan);
+      border-color: rgba(114, 215, 255, 0.2);
+      background: rgba(114, 215, 255, 0.08);
+    }
+
+    h1, h2, h3, .display {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 64px 0 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(91, 163, 255, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 1.05;
+      max-width: 16ch;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #ffffff, #c7f1ff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 22px);
+      color: var(--muted);
+      max-width: 72ch;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      white-space: nowrap;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn.primary {
+      color: #160f05;
+      background: linear-gradient(135deg, #5ba3ff, #a78bfa);
+      box-shadow: 0 12px 40px rgba(91, 163, 255, 0.3);
+    }
+
+    .btn.primary:hover {
+      box-shadow: 0 16px 50px rgba(91, 163, 255, 0.4);
+    }
+
+    .btn.secondary {
+      color: #c7f1ff;
+      background: rgba(91, 163, 255, 0.08);
+      border-color: rgba(91, 163, 255, 0.3);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(91, 163, 255, 0.15);
+      border-color: rgba(91, 163, 255, 0.5);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 64px 0 48px;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      width: fit-content;
+      border-radius: 999px;
+      color: #72d7ff;
+      border: 1px solid rgba(114, 215, 255, 0.2);
+      background: rgba(114, 215, 255, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      max-width: 20ch;
+    }
+
+    .section-lead {
+      max-width: 72ch;
+      color: var(--muted);
+      line-height: 1.82;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(20, 23, 40, 0.8), rgba(10, 12, 20, 0.6));
+      border: 1px solid rgba(114, 215, 255, 0.1);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      transition: transform 280ms ease, border-color 280ms ease, background 280ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(114, 215, 255, 0.2);
+      background: linear-gradient(135deg, rgba(30, 35, 55, 0.9), rgba(15, 18, 30, 0.7));
+    }
+
+    .card h3 {
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff, #c7f1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .card li {
+      color: var(--muted);
+      padding-left: 24px;
+      position: relative;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: bold;
+    }
+
+    .track-card {
+      position: relative;
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .track-card.beginner {
+      background: linear-gradient(135deg, rgba(91, 163, 255, 0.15), rgba(167, 139, 250, 0.1));
+      border: 1px solid rgba(91, 163, 255, 0.2);
+    }
+
+    .track-card.intermediate {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(114, 215, 255, 0.1));
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+
+    .track-badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .track-card.beginner .track-badge {
+      background: rgba(91, 163, 255, 0.2);
+      color: #72d7ff;
+    }
+
+    .track-card.intermediate .track-badge {
+      background: rgba(167, 139, 250, 0.2);
+      color: #d8b9ff;
+    }
+
+    .track-card h3 {
+      font-size: 42px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .track-card p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .highlight-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .highlight-list li {
+      color: var(--muted);
+      padding-left: 28px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .highlight-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* TIMELINE */
+    .timeline-container {
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(91, 163, 255, 0.3), rgba(167, 139, 250, 0.3), transparent);
+      z-index: 0;
+    }
+
+    .timeline-step {
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border: 2px solid var(--bg);
+      margin-bottom: 16px;
+      box-shadow: 0 0 20px rgba(91, 163, 255, 0.4);
+    }
+
+    .timeline-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(20, 23, 40, 0.8);
+      border: 1px solid rgba(114, 215, 255, 0.1);
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .timeline-card h4 {
+      font-size: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .timeline-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    /* COMPARISON */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .comparison-card {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(30, 35, 55, 0.8), rgba(15, 18, 30, 0.6));
+      border: 1px solid rgba(114, 215, 255, 0.1);
+    }
+
+    .comparison-card h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .comparison-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .comparison-list li {
+      color: var(--muted);
+      padding-left: 24px;
+      position: relative;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .comparison-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: bold;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details.faq {
+      border-radius: 18px;
+      border: 1px solid rgba(114, 215, 255, 0.1);
+      background: rgba(20, 23, 40, 0.6);
+      overflow: hidden;
+      transition: border-color 280ms ease;
+    }
+
+    details.faq:hover {
+      border-color: rgba(114, 215, 255, 0.2);
+    }
+
+    details.faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      user-select: none;
+    }
+
+    details.faq summary::-webkit-details-marker { display: none; }
+
+    .faq-body {
+      padding: 0 20px 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .faq-plus {
+      flex: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(114, 215, 255, 0.2);
+      background: rgba(114, 215, 255, 0.08);
+      transition: 180ms ease;
+    }
+
+    details[open] .faq-plus {
+      transform: rotate(45deg);
+      background: rgba(114, 215, 255, 0.15);
+      border-color: rgba(114, 215, 255, 0.3);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      padding: 48px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(91, 163, 255, 0.12), rgba(167, 139, 250, 0.08));
+      border: 1px solid rgba(114, 215, 255, 0.15);
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff, #c7f1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 64ch;
+      margin: 0 auto 28px;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .contact-info-item {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 40px 0 60px;
+      text-align: center;
+      color: var(--soft);
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-logos img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(114, 215, 255, 0.1));
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    /* ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .grid-2,
+      .grid-3,
+      .comparison-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 16px;
+        width: 2px;
+        height: auto;
+        top: 0;
+        bottom: 0;
+      }
+
+      .timeline-dot {
+        margin-left: 0;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 6vw, 60px);
+      }
+
+      .section h2 {
+        font-size: clamp(32px, 5vw, 52px);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 18px, 1200px); }
+
+      .topbar {
+        border-radius: 20px;
+        padding: 12px 14px;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .hero {
+        padding: 48px 0 36px;
+      }
+
+      .hero h1 {
+        font-size: clamp(28px, 6vw, 44px);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        min-height: 44px;
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 48px 0 36px;
+      }
+
+      .section h2 {
+        font-size: clamp(24px, 5vw, 40px);
+      }
+
+      .card,
+      .track-card,
+      .contact-card,
+      .timeline-card {
+        padding: 20px;
+      }
+
+      .card h3 {
+        font-size: 22px;
+      }
+
+      .track-card h3 {
+        font-size: 28px;
+      }
+
+      .contact-card {
+        padding: 32px 20px;
+      }
+
+      .contact-card h3 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div class="shell">
+    <header class="topbar reveal">
+      <div class="topbar-inner">
+        <div class="brand-stack" aria-label="Event logos">
+          <img src="images/paradox_logo.png" alt="Paradox logo" />
+          <div class="brand-sep"></div>
+          <img src="images/iit_logo.png" alt="IIT logo" />
+          <div class="brand-sep"></div>
+          <img src="images/rasor_logo.png" alt="Ramanujan Society of Research logo" />
+        </div>
+        <nav class="nav" aria-label="Page sections">
+          <a href="#what-is">What is the event?</a>
+          <a href="#explore">Explore tracks</a>
+          <a href="#why">Why join?</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Research: To Infinity and Beyond</h1>
+          <p class="hero-subtitle">
+            A full-cycle research simulation where participants ideate, experiment, document, review, refine, and present their work in a competitive academic environment. This is not just another competition—it's your entry into a real research ecosystem.
+          </p>
+          <div class="hero-cta">
+            <a href="#explore" class="btn primary">Explore the Tracks</a>
+            <a href="https://www.iitmparadox.org/events/technicals/70" class="btn secondary">Register Now</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT IS THE EVENT -->
+      <section class="section reveal" id="what-is">
+        <div class="section-header">
+          <div class="section-kicker">The Event</div>
+          <h2>This is not a normal college event.</h2>
+          <p class="section-lead">
+            Research: To Infinity and Beyond simulates the real research ecosystem—where ideas are tested, refined through peer review, and presented to expert evaluators. You're not solving a problem from a textbook. You're thinking like researchers do: hypothesize, design, experiment, analyze, refine, and present.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Experimental design</h3>
+            <p>Form hypotheses, design experiments, and test real ideas. You'll document your methodology the way researchers do.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Peer review</h3>
+            <p>Submit your work for anonymous peer evaluation. Learn how the academic publishing process actually works.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Competitive atmosphere</h3>
+            <p>Present before expert researchers and industry professionals. This is where ideas are judged on merit and clarity.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Hypothesis-driven thinking</h3>
+            <p>Start with a question, not a solution. Learn critical thinking by building and testing your ideas.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Journal-quality work</h3>
+            <p>For intermediate participants: produce work that meets academic standards. This is serious research.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Collaboration & growth</h3>
+            <p>Work with ambitious peers. Present to mentors and experts. Learn from feedback at every stage.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPLORE TRACKS -->
+      <section class="section reveal" id="explore">
+        <div class="section-header">
+          <div class="section-kicker">Two Paths</div>
+          <h2>Explore the Two Tracks</h2>
+          <p class="section-lead">
+            Choose the track that matches your experience level. Both are serious research challenges. The difference is the depth and scope.
+          </p>
+        </div>
+
+        <div class="grid-2 reveal">
+          <article class="track-card beginner">
+            <div class="track-badge">For Newcomers</div>
+            <h3>Beginner Track</h3>
+            <p>
+              Your entry into hands-on research. You'll receive a hypothesis, design an experiment, document your methodology, and present your findings to an expert jury—just like in real research.
+            </p>
+            <ul class="highlight-list">
+              <li>Receive a research hypothesis</li>
+              <li>Design and plan an experiment</li>
+              <li>Document your methodology rigorously</li>
+              <li>Present findings to expert evaluators</li>
+              <li>Compete through two rounds of increasing complexity</li>
+              <li>Attend a keynote workshop to build confidence</li>
+              <li>Team size: 2–4 members</li>
+              <li>Format: On-site (Two rounds)</li>
+              <li>Compete for exciting prizes</li>
+            </ul>
+          </article>
+
+          <article class="track-card intermediate">
+            <div class="track-badge">For the Ambitious</div>
+            <h3>Intermediate Track</h3>
+            <p>
+              The serious research path. Produce a full, peer-reviewed research journal in AI, Data Science, or Electronics & Embedded Systems. Submit for anonymous peer review, incorporate feedback, and present to expert researchers and industry professionals.
+            </p>
+            <ul class="highlight-list">
+              <li>Choose your research domain (AI, Data Science, or EEE)</li>
+              <li>Produce a complete, journal-quality manuscript</li>
+              <li>Submit for anonymous peer review</li>
+              <li>Review peers' work as part of the process</li>
+              <li>Incorporate or consciously reject feedback</li>
+              <li>Present at IIT Madras campus (if shortlisted)</li>
+              <li>Team size: 1–8 members (solo allowed)</li>
+              <li>Format: Online submission + On-site presentation</li>
+              <li>This simulates real academic publishing</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="section reveal" id="timeline">
+        <div class="section-header">
+          <div class="section-kicker">The Journey</div>
+          <h2>How the Competition Unfolds</h2>
+          <p class="section-lead">
+            For intermediate track participants, here's the complete timeline. All dates are tentative.
+          </p>
+        </div>
+
+        <div class="timeline-container reveal">
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">May 20</div>
+                <h4>Orientation</h4>
+                <p>Briefing on event structure, topic domains, and journal format expectations.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">May 25</div>
+                <h4>Author Freeze</h4>
+                <p>Final author list locked. Order matters, just like in real research.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">June 1</div>
+                <h4>Initial Submission</h4>
+                <p>Submit your manuscript draft for anonymized peer review. Must be substantially complete.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">June 2–4</div>
+                <h4>Peer Review</h4>
+                <p>Each paper receives at least two anonymous reviews. All teams review others' work.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">June 7</div>
+                <h4>Shortlisting</h4>
+                <p>Incorporate or consciously reject feedback. Shortlisted papers proceed to presentations.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-date">June 10–13</div>
+                <h4>Final Event</h4>
+                <p>Qualified teams present to the jury at IIT Madras campus. Open cohort format for others.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRACK COMPARISON -->
+      <section class="section reveal" id="choose-track">
+        <div class="section-header">
+          <div class="section-kicker">Self-Identify</div>
+          <h2>Which track is right for you?</h2>
+          <p class="section-lead">
+            Use this guide to understand which path matches your goals and experience level.
+          </p>
+        </div>
+
+        <div class="comparison-grid reveal">
+          <div class="comparison-card">
+            <h3>Choose Beginner if:</h3>
+            <ul class="comparison-list">
+              <li>You're new to research and want a friendly introduction</li>
+              <li>You enjoy experimentation and problem-solving</li>
+              <li>You want hands-on competitive learning in a supportive environment</li>
+              <li>You like presenting your ideas and getting feedback</li>
+              <li>You want to see what research feels like before diving deeper</li>
+            </ul>
+          </div>
+          <div class="comparison-card">
+            <h3>Choose Intermediate if:</h3>
+            <ul class="comparison-list">
+              <li>You enjoy technical writing and detailed analysis</li>
+              <li>You're interested in AI, Data Science, or Electronics</li>
+              <li>You want hands-on experience with real research workflows</li>
+              <li>You're ready for peer-reviewed academic work</li>
+              <li>You want to be taken seriously as a researcher</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY PARTICIPATE -->
+      <section class="section reveal" id="why">
+        <div class="section-header">
+          <div class="section-kicker">The Value</div>
+          <h2>Why ambitious students join.</h2>
+          <p class="section-lead">
+            This isn't about "gaining exposure" or "enhancing skills"—vague promises. Here's what actually happens when you participate:
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Enter the Research Ecosystem</h3>
+            <p>This isn't a simulation—it's how real research works. You think like researchers, go through the same workflows, and present to experts who actually judge research for a living.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Test Ideas at Speed</h3>
+            <p>Hypothesis → Design → Experiment → Present. In compressed time, you learn what accelerates intellectual thinking. You'll know what it feels like to defend an idea.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Get Feedback from Experts</h3>
+            <p>Not generic comments—substantive evaluation from researchers and industry professionals. This teaches you what "good" really means at an academic level.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Build with Ambitious Peers</h3>
+            <p>You'll collaborate with students who chose this event specifically. That changes the energy. You'll be surrounded by people who take intellectual work seriously.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Understand Your Strengths</h3>
+            <p>Do you think in hypotheses? Can you design clean experiments? Can you communicate findings clearly? This event answers those questions about yourself.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Build a Foundation</h3>
+            <p>Whether you pursue research later or not, you'll have experienced the core of how knowledge gets created and validated. That mindset matters forever.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section reveal" id="faq">
+        <div class="section-header">
+          <div class="section-kicker">Questions</div>
+          <h2>Frequently asked questions</h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq">
+            <summary>Who should join this event?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Anyone interested in research, experimental design, data analysis, or academic thinking. Both beginner and intermediate participants are welcome. You don't need prior research experience for the beginner track—just curiosity and a willingness to think critically.
+            </div>
+          </details>
+          <details class="faq">
+            <summary>Do I need prior research experience?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Not for the beginner track. The intermediate track assumes you're comfortable with technical writing and your chosen domain (AI, Data Science, or Electronics). If you're unsure, start with beginner.
+            </div>
+          </details>
+          <details class="faq">
+            <summary>What domains are available for the intermediate track?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Artificial Intelligence, Data Science, or Electronics & Embedded Systems. Choose the domain that excites you. Your research should be original, well-documented, and ready for peer review.
+            </div>
+          </details>
+          <details class="faq">
+            <summary>Can I participate solo in the intermediate track?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Yes. Team size is 1–8 members. Solo participation is allowed and encouraged if that's where your ideas live.
+            </div>
+          </details>
+          <details class="faq">
+            <summary>When does orientation happen?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Orientation for intermediate participants is on May 20. Beginner participants do not have orientation—they start with the track directly. Orientation covers event structure, evaluation criteria, and expectations.
+            </div>
+          </details>
+          <details class="faq">
+            <summary>What happens if I need help or have questions?<span class="faq-plus">+</span></summary>
+            <div class="faq-body">
+              Reach out to Jasmitha Kancharlapalli, Deputy Event Head. She's available via email (see Contact section below). The coordinators are here to help you succeed.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="section reveal">
+        <div class="contact-card">
+          <h3>The future belongs to those who question, experiment, and build.</h3>
+          <p>
+            Research: To Infinity and Beyond is your chance to think like a researcher, collaborate with ambitious peers, and present your ideas to experts who take intellectual work seriously.
+          </p>
+          <p style="font-weight: 600; margin-top: 24px;">
+            Spots are limited. The event happens in May and June 2026.
+          </p>
+          <div class="contact-buttons">
+            <a href="https://www.iitmparadox.org/events/technicals/70" class="btn primary">Register Now</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section reveal" id="contact">
+        <div class="section-header">
+          <div class="section-kicker">Get in Touch</div>
+          <h2>Questions? We're here to help.</h2>
+          <p class="section-lead">
+            Whether you need help choosing a track, understanding the submission process, forming a team, or clarifying any aspect of the event—reach out. The coordinators are here to guide you.
+          </p>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3>Jasmitha Kancharlapalli</h3>
+          <p style="margin-bottom: 8px; font-weight: 500; color: #ffffff;">Deputy Event Head</p>
+          <div class="contact-info">
+            <div class="contact-info-item">📧 23f2004958@ds.study.iitm.ac.in</div>
+          </div>
+          <div class="contact-buttons">
+            <a href="mailto:23f2004958@ds.study.iitm.ac.in?subject=Research%3A%20To%20Infinity%20and%20Beyond%20Query" class="btn primary">Send Email</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-logos" aria-label="Footer logos">
+        <img src="images/paradox_logo.png" alt="Paradox logo" />
+        <img src="images/iit_logo.png" alt="IIT logo" />
+        <img src="images/rasor_logo.png" alt="Ramanujan Society of Research logo" />
+      </div>
+      <div class="footer-text">Research: To Infinity and Beyond · A full-cycle research simulation · Paradox '26 at IIT Madras</div>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+
+    const updateProgress = () => {
+      const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollMax > 0 ? (window.scrollY / scrollMax) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
